@@ -1,33 +1,33 @@
-import 'package:flutter/material.dart';
 
-enum Affortability {
-  cheap,
-  pricey,
-  luxorious,
+
+enum Affordability {
+  Affordable,
+  Pricey,
+  Luxurious,
 }
 enum Complexity {
-  easy,
-  medium,
-  hard,
+  Simple,
+  Challenging,
+  Hard,
 }
 
-class Meal {
+ class Meal {
   final String id;
+  final int duration;
+  final String imageUrl;
+  final String title;
+  final List<String> categories;
+  final List<String> ingredients;
+  final List<String> steps;
+  final bool isGlutenFree;
+  final bool isVegan;
+  final bool isVegetarian;
+  final bool isLactoseFree;
+  final Affordability affordability;
+  final Complexity complexity;
 
-  String imageUrl;
-  String title;
-  List<String> categories;
-  List<String> ingredients;
-  List<String> steps;
-  bool isGlutenFree;
-  bool isVegan;
-  bool isVegetarian;
-  bool isLactoseFree;
-  Affortability affortability;
-  Complexity complexity;
-
-  Meal(
-      {required this.affortability,
+  const Meal(
+      {required this.affordability,
       required this.categories,
       required this.complexity,
       required this.id,
@@ -38,5 +38,6 @@ class Meal {
       required this.isVegan,
       required this.isVegetarian,
       required this.steps,
-      required this.title});
+      required this.title,
+      required this.duration});
 }
