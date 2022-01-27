@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import './category_model.dart';
-import './../../meals/views/meals_model.dart';
+import '../modules/category/views/category_model.dart';
+import '../modules/meals/views/meal_model.dart';
 
 
 

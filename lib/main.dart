@@ -17,6 +17,7 @@ void main() {
             bodyText2: TextStyle(
               color: Color.fromRGBO(20, 51, 51, 1),
             ),
+            
             subtitle1: TextStyle(
               fontSize: 25,
               fontFamily: 'RobotoCondensed',

@@ -1,17 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
 
-import 'meals_model.dart';
+import '../controllers/meals_controller.dart';
+import 'meal_model.dart';
 
-
-
-class MealsTile extends StatelessWidget {
+class MealTile extends GetView<MealsController> {
   Meal meal;
-  MealsTile({required this.meal});
+  MealTile({required this.meal});
+
+  /* dinamicly converting enums from meal_data to string interpretation*/
+//
+  get affordability {
+    switch (meal.affordability) {
+      case Affordability.Affordable:
+        return 'Affotrable';
+
+      case Affordability.Pricey:
+        return 'Pricey';
+
+      case Affordability.Luxurious:
+        return 'Luxurious';
+
+      default:
+        return 'unknown';
+    }
+  }
+
+  get complexity {
+    switch (meal.complexity) {
+      case Complexity.Challenging:
+        return 'Challenging';
+
+      case Complexity.Hard:
+        return 'Hard';
+
+      case Complexity.Simple:
+        return 'Simple';
+
+      default:
+        'unknown';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final comp = meal.affordability;
+
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Get.toNamed('/meal-recipes',arguments: meal);
+      },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: Container(
@@ -33,14 +72,18 @@ class MealsTile extends StatelessWidget {
                 ),
               ),
               Positioned(
-                top: 250,
+                top: 240,
                 right: 10,
                 child: Container(
-                  color: Colors.white70,
-                  child: Text(
-                    meal.title,
-                    // style: kTextMainTitle,
-                  ),
+                  width: 340,
+                  height: 40,
+                  color: Colors.black54,
+                  child: FittedBox(
+                      child: Text(meal.title,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 24,
+                              fontFamily: 'Ralleway'))),
                 ),
               ),
               Positioned(
@@ -54,16 +97,14 @@ class MealsTile extends StatelessWidget {
                       children: [
                         Icon(Icons.access_time),
                         Text(
-                          meal.duration.toString(),
-                          // style: kTextSubTitle,
+                          '${meal.duration.toString()} min',
                         ),
                       ],
                     ),
                     Row(
                       children: [
                         Icon(Icons.accessibility),
-                        // Text(
-                        //   complexity,
+                        Text(complexity)
                         //   style: kTextSubTitle,
                         // )
                       ],
@@ -71,8 +112,7 @@ class MealsTile extends StatelessWidget {
                     Row(
                       children: [
                         Icon(Icons.account_balance_wallet_rounded),
-                        // Text(
-                        //   complexity,
+                        Text(affordability)
                         //   style: kTextSubTitle,
                         // )
                       ],

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/category_controller.dart';
-import 'category_data.dart';
+import '../../../data/meals_data.dart';
 import 'category_tile.dart';
 
 class CategoryView extends GetView<CategoryController> {

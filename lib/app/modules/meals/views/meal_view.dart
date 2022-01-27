@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:getx_meals_app/app/modules/category/views/category_model.dart';
-import 'package:getx_meals_app/app/modules/meals/views/meals_tile.dart';
-import '../../category/./views/category_data.dart';
+import 'package:getx_meals_app/app/modules/meals/views/meal_tile.dart';
+import '../../../data/meals_data.dart';
 import '../controllers/meals_controller.dart';
-import 'meals_model.dart';
+import 'meal_model.dart';
 
-class MealsView extends GetView<MealsController> {
+class MealView extends GetView<MealsController> {
   @override
   Widget build(BuildContext context) {
     var getArguments = Get.arguments as Map<String, Object>;
@@ -27,7 +27,7 @@ class MealsView extends GetView<MealsController> {
           child: ListView.builder(
             itemCount: sortedList.length,
             itemBuilder: (context, index) {
-              return MealsTile(meal: sortedList[index ]) ;
+              return MealTile(meal: sortedList[index ]) ;
 
               // if (mealsData[index].categories.contains(id)) {
               //   return MealsTile(meal: mealsData[index]);
