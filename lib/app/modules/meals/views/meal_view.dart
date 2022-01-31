@@ -12,7 +12,7 @@ import 'meal_model.dart';
 class MealView extends GetView<MealsController> {
   @override
   Widget build(BuildContext context) {
-    var getArguments = Get.arguments as Map<String, Object>;
+    var getArguments = Get.arguments ;
     late String id = Get.arguments['id'];
     final sortedList =
         mealsData.where((e) => e.categories.contains(id)).toList();
@@ -27,7 +27,7 @@ class MealView extends GetView<MealsController> {
           child: ListView.builder(
             itemCount: sortedList.length,
             itemBuilder: (context, index) {
-              return MealTile(meal: sortedList[index ]) ;
+              return MealTile(meal: sortedList[index]) ;
 
               // if (mealsData[index].categories.contains(id)) {
               //   return MealsTile(meal: mealsData[index]);

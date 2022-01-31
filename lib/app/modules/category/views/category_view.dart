@@ -7,6 +7,11 @@ import '../../../data/meals_data.dart';
 import 'category_tile.dart';
 
 class CategoryView extends GetView<CategoryController> {
+  RxInt index = 0.obs;
+  void screenChanger(index) {
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +42,10 @@ class CategoryView extends GetView<CategoryController> {
             crossAxisSpacing: 15,
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: screenChanger,
+        items: [],
       ),
     );
   }

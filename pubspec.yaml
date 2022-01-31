@@ -37,3 +37,7 @@ flutter:
           weight: 300
         - asset: assets/fonts/RobotoCondensed-Italic.ttf
           style: italic
+    - family: ArchitectsDaughter
+      fonts:
+        - asset: assets/fonts/ArchitectsDaughter-Regular.ttf
+
