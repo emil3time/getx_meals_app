@@ -14,7 +14,8 @@ class CategoryTile extends StatelessWidget {
       borderRadius: BorderRadius.all(Radius.circular(10)),
       splashColor: Theme.of(context).primaryColor,
       onTap: () {
-        Get.toNamed('/meals', arguments: {'id':id,'title': title,'color': color});
+        Get.toNamed('/meals',
+            arguments: {'id': id, 'title': title, 'color': color});
         // Navigator.of(context).pushNamed('/meals', arguments: {'id':id,'title': title,'color': color});
       },
       child: Container(
@@ -26,7 +27,7 @@ class CategoryTile extends StatelessWidget {
                 colors: [color.withOpacity(0.5), color]),
           ),
           child: Center(
-            child: Text(title , style: Theme.of(context).textTheme.subtitle1),
+            child: Text(title, style: Theme.of(context).textTheme.subtitle1),
           )),
     );
   }

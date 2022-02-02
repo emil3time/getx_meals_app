@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class TabsController extends GetxController {
-  //TODO: Implement TabsController
+class FiltersController extends GetxController {
+  //TODO: Implement FiltersController
 
   final count = 0.obs;
   @override

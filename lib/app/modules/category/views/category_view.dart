@@ -1,26 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:getx_meals_app/app/modules/favorits/views/favorits_view.dart';
 
 import '../controllers/category_controller.dart';
 import '../../../data/meals_data.dart';
 import 'category_tile.dart';
 
 class CategoryView extends GetView<CategoryController> {
-  RxInt index = 0.obs;
-  void screenChanger(index) {
-    
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'MealsApp',
-        ),
-        centerTitle: true,
-      ),
       body: Container(
         child: GridView(
           padding: EdgeInsets.all(20),
@@ -42,10 +32,6 @@ class CategoryView extends GetView<CategoryController> {
             crossAxisSpacing: 15,
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: screenChanger,
-        items: [],
       ),
     );
   }

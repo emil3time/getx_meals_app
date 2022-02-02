@@ -8,10 +8,7 @@ class FavoritsView extends GetView<FavoritsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('FavoritsView'),
-        centerTitle: true,
-      ),
+      
       body: Center(
         child: Text(
           'FavoritsView is working',

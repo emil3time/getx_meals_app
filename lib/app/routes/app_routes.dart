@@ -9,6 +9,7 @@ abstract class Routes {
   static const MEAL_RECIPES = _Paths.MEAL_RECIPES;
   static const TABS = _Paths.TABS;
   static const FAVORITS = _Paths.FAVORITS;
+  static const FILTERS = _Paths.FILTERS;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const MEAL_RECIPES = '/meal-recipes';
   static const TABS = '/tabs';
   static const FAVORITS = '/favorits';
+  static const FILTERS = '/filters';
 }
