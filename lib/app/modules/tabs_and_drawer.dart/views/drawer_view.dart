@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_meals_app/app/routes/app_pages.dart';
 
 import 'bottom_bar_view.dart';
 
@@ -49,15 +50,19 @@ class CustomDrawer extends StatelessWidget {
                     )
                   ],
                 )),
-            _buildListTile(Icons.fastfood, 'category',
-                () => Get.offNamed('/tabs', preventDuplicates: false)),
+            _buildListTile(
+                Icons.fastfood, 'category', () => Get.toNamed(Routes.CATEGORY)),
             Divider(
               color: Theme.of(context).colorScheme.background,
               thickness: 4,
               indent: 25,
             ),
-            _buildListTile(Icons.filter_frames, 'filters',
-                () => Get.offNamed('/filters', preventDuplicates: false)),
+            _buildListTile(
+                Icons.filter_frames,
+                'filters',
+                () => Get.toNamed(
+                      Routes.FILTERS,
+                    )),
             Divider(
               color: Theme.of(context).colorScheme.background,
               thickness: 4,
