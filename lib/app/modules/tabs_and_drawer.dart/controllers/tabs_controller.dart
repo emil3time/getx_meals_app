@@ -7,18 +7,18 @@ import '../../favorits/views/favorits_view.dart';
 class BottomController extends GetxController {
   //TODO: Implement TabsController
 
-int selectedScreenIndex = 0;
+  RxInt selectedScreenIndex = 0.obs;
 
- void screenChanger(int index) {
-    selectedScreenIndex = index;
-    screens[selectedScreenIndex];
+  void screenChanger(int index) {
+    selectedScreenIndex.value = index;
+    screens[selectedScreenIndex.value];
     update();
   }
- final List<Widget> screens = [
+
+  final List<Widget> screens = [
     CategoryView(),
     FavoritsView(),
   ];
-
 
   final count = 0.obs;
 

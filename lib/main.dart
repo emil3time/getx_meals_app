@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:getx_meals_app/app/bindings/controller_bindings.dart';
+import 'package:getx_meals_app/app/controllers/file_controller.dart';
+import 'package:getx_meals_app/app/controllers/global_controller.dart';
 
 import 'app/routes/app_pages.dart';
 
-void main() {
+void main() async {
+  // Get.put(GlobalController());
+  // Get.put(FileController());
+  await GetStorage.init();
+
   runApp(
     GetMaterialApp(
       /* smartManagement: SmartManagement.onlyBuilder, */
+      initialBinding: ControllerBinding(),
       theme: ThemeData(
-        backgroundColor:Color.fromRGBO(255, 254, 229, 1),
+        backgroundColor: Color.fromRGBO(255, 254, 229, 1),
         canvasColor: Color.fromRGBO(255, 254, 229, 1),
         fontFamily: 'Raleway',
         textTheme: ThemeData.light().textTheme.copyWith(
