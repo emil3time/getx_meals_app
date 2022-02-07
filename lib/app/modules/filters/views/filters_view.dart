@@ -12,8 +12,8 @@ const ksubtitle = TextStyle(
 );
 
 class FiltersView extends GetView<FiltersController> {
-  final controller =
-      Get.put(FiltersController()); // In case you are not using named routing
+  // final controller =
+  //     Get.put(FiltersController()); // In case you are not using named routing
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,17 +22,16 @@ class FiltersView extends GetView<FiltersController> {
           title: Text('FiltersView'),
           centerTitle: true,
         ),
-        body: Obx(() => Column(
-              children: [
-                Text(
-                  'Adjust your meal Selection ${Get.find<GlobalController>().userId.value}',
-                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.w900),
-                ),
-                SwitchListTile(
+        body: Column(
+          children: [
+            Text(
+              'Adjust your meal Selection ${Get.find<GlobalController>().userId.value}',
+              style: TextStyle(fontSize: 40, fontWeight: FontWeight.w900),
+            ),
+            Obx(() => SwitchListTile(
                   onChanged: (value) {
                     controller.gluten.value = value;
                     controller.updateFilters('gluten', value);
-                    print(controller.gluten.value);
                   },
                   value: controller.gluten.value,
                   title: Text(
@@ -43,8 +42,8 @@ class FiltersView extends GetView<FiltersController> {
                     'only gluten',
                     style: ksubtitle,
                   ),
-                ),
-                SwitchListTile(
+                )),
+            Obx(() => SwitchListTile(
                   onChanged: (value) {
                     controller.lactose.value = value;
                     controller.updateFilters('lactose', value);
@@ -58,8 +57,8 @@ class FiltersView extends GetView<FiltersController> {
                     'only lactose',
                     style: ksubtitle,
                   ),
-                ),
-                SwitchListTile(
+                )),
+            Obx(() => SwitchListTile(
                   onChanged: (value) {
                     controller.vegetarian.value = value;
                     controller.updateFilters('vegetarian', value);
@@ -73,8 +72,8 @@ class FiltersView extends GetView<FiltersController> {
                     'no meat',
                     style: ksubtitle,
                   ),
-                ),
-                SwitchListTile(
+                )),
+            Obx(() => SwitchListTile(
                   onChanged: (value) {
                     controller.vegan.value = value;
                     controller.updateFilters('vegan', value);
@@ -88,8 +87,8 @@ class FiltersView extends GetView<FiltersController> {
                     'Vege',
                     style: ktitle,
                   ),
-                ),
-              ],
-            )));
+                )),
+          ],
+        ));
   }
 }

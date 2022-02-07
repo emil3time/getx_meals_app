@@ -13,11 +13,11 @@ import 'meal_model.dart';
 class MealView extends GetView<MealsController> {
   @override
   Widget build(BuildContext context) {
-    final MealsController controller = Get.put(MealsController());
+
     late String title = Get.arguments['title'];
     late String id = Get.arguments['id'];
     controller.sortingList(id);
-    controller.filtering;
+    controller.filtering();
 
     return Scaffold(
       appBar: AppBar(

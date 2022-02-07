@@ -7,14 +7,14 @@ class FiltersController extends GetxController {
   RxBool vegetarian = false.obs;
   RxBool vegan = false.obs;
 
-  Map<String, bool> filters() {
+  /*  Map<String, bool> filters() {
     return {
       'isGlutenFree': gluten.value,
       'isLactoseFree': lactose.value,
       'isVegetarian': vegetarian.value,
       'isVegan': vegan.value,
     };
-  }
+  } */
 
   void initializeFilters() {
     gluten.value = Get.find<GlobalController>().box.read('gluten') ?? false;
@@ -27,10 +27,6 @@ class FiltersController extends GetxController {
   void updateFilters(String filterName, bool value) {
     Get.find<GlobalController>().box.write(filterName, value);
   }
-
-  final count = 0.obs;
-
-  void increment() => count.value++;
 
   @override
   void onInit() {
