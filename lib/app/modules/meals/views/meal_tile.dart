@@ -6,13 +6,13 @@ import '../controllers/meals_controller.dart';
 import 'meal_model.dart';
 
 class MealTile extends GetView<MealsController> {
-  Meal meal;
-  MealTile({required this.meal});
+  Meal sortedMeal;
+  MealTile({required this.sortedMeal});
 
   /* dinamicly converting enums from meal_data to string interpretation*/
 //
   get affordability {
-    switch (meal.affordability) {
+    switch (sortedMeal.affordability) {
       case Affordability.Affordable:
         return 'Affotrable';
 
@@ -28,7 +28,7 @@ class MealTile extends GetView<MealsController> {
   }
 
   get complexity {
-    switch (meal.complexity) {
+    switch (sortedMeal.complexity) {
       case Complexity.Challenging:
         return 'Challenging';
 
@@ -45,11 +45,11 @@ class MealTile extends GetView<MealsController> {
 
   @override
   Widget build(BuildContext context) {
-    final comp = meal.affordability;
+
 
     return InkWell(
       onTap: () {
-        Get.toNamed('/meal-recipes',arguments: meal);
+        Get.toNamed('/meal-recipes',arguments: sortedMeal);
       },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -66,7 +66,7 @@ class MealTile extends GetView<MealsController> {
                       topRight: Radius.circular(15),
                       topLeft: Radius.circular(15)),
                   child: Image.network(
-                    meal.imageUrl,
+                    sortedMeal.imageUrl,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -79,7 +79,7 @@ class MealTile extends GetView<MealsController> {
                   height: 40,
                   color: Colors.black54,
                   child: FittedBox(
-                      child: Text(meal.title,
+                      child: Text(sortedMeal.title,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 24,
@@ -97,7 +97,7 @@ class MealTile extends GetView<MealsController> {
                       children: [
                         Icon(Icons.access_time),
                         Text(
-                          '${meal.duration.toString()} min',
+                          '${sortedMeal.duration.toString()} min',
                         ),
                       ],
                     ),

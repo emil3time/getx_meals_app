@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import 'package:getx_meals_app/app/modules/meals/views/meal_model.dart';
 
-import '../controllers/meal_recipes_controller.dart';
+import '../../meals/controllers/meals_controller.dart';
 
 Widget buildListTitle(context, String text) {
   return Padding(
@@ -26,12 +26,11 @@ Widget buildListContainer(Widget widget) {
       child: widget);
 }
 
-class MealRecipesView extends GetView<MealRecipesController> {
+class MealRecipesView extends GetView<MealsController> {
   @override
   Widget build(BuildContext context) {
     var getArguments = Get.arguments as Meal;
-    final List<String> ingredients = Get.arguments.ingredients as List<String>;
-    final List<String> steps = Get.arguments.steps as List<String>;
+  
 
     return Scaffold(
       appBar: AppBar(
@@ -45,18 +44,33 @@ class MealRecipesView extends GetView<MealRecipesController> {
           color: Colors.white,
           child: Column(
             children: [
-              Container(
-                height: 300,
-                width: double.infinity,
-                child: Image.network(
-                  getArguments.imageUrl,
-                  fit: BoxFit.cover,
-                ),
+              Stack(
+                children: [
+                  Container(
+                    height: 300,
+                    width: double.infinity,
+                    child: Image.network(
+                      getArguments.imageUrl,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Positioned(
+                      top: 15,
+                      left: 320,
+                      child: FloatingActionButton(
+                        backgroundColor: Colors.purple,
+                        onPressed: () {
+                          controller.deleteSortedListItem(getArguments.id);
+                          Get.back();
+                        },
+                        child: Icon(Icons.delete),
+                      )),
+                ],
               ),
               buildListTitle(context, 'Ingridients'),
               buildListContainer(
                 ListView.builder(
-                    itemCount: ingredients.length,
+                    itemCount: getArguments.ingredients.length,
                     itemBuilder: (context, index) {
                       return Card(
                         elevation: 5,
@@ -64,7 +78,7 @@ class MealRecipesView extends GetView<MealRecipesController> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            ingredients[index],
+                            getArguments.ingredients[index],
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontFamily: 'ArchitectsDaughter',
@@ -78,13 +92,13 @@ class MealRecipesView extends GetView<MealRecipesController> {
               buildListTitle(context, 'Steps'),
               buildListContainer(
                 ListView.builder(
-                    itemCount: steps.length,
+                    itemCount: getArguments.steps.length,
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
                           ListTile(
                             title: Text(
-                              steps[index],
+                              getArguments.steps[index],
                               style:
                                   TextStyle(fontFamily: 'ArchitectsDaughter'),
                             ),

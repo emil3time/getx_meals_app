@@ -1,7 +1,21 @@
 import 'package:get/get.dart';
 
 class FiltersController extends GetxController {
-  //TODO: Implement FiltersController
+  RxBool gluten = false.obs;
+  RxBool lactose = false.obs;
+  RxBool vegetarian = false.obs;
+  RxBool vegan = false.obs;
+
+
+
+  Map<String, bool> filters() {
+    return {
+      'isGlutenFree': gluten.value,
+      'isLactoseFree': lactose.value,
+      'isVegetarian': vegetarian.value,
+      'isVegan': vegan.value,
+    };
+  }
 
   final count = 0.obs;
   @override

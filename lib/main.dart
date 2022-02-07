@@ -7,6 +7,7 @@ import 'app/routes/app_pages.dart';
 void main() {
   runApp(
     GetMaterialApp(
+      /* smartManagement: SmartManagement.onlyBuilder, */
       theme: ThemeData(
         backgroundColor:Color.fromRGBO(255, 254, 229, 1),
         canvasColor: Color.fromRGBO(255, 254, 229, 1),

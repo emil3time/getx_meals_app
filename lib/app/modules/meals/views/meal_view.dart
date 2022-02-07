@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:getx_meals_app/app/modules/category/views/category_model.dart';
+import 'package:getx_meals_app/app/modules/filters/controllers/filters_controller.dart';
 import 'package:getx_meals_app/app/modules/meals/views/meal_tile.dart';
 import '../../../data/meals_data.dart';
 import '../controllers/meals_controller.dart';
@@ -12,29 +13,28 @@ import 'meal_model.dart';
 class MealView extends GetView<MealsController> {
   @override
   Widget build(BuildContext context) {
-    var getArguments = Get.arguments ;
+    final MealsController controller = Get.put(MealsController());
+    late String title = Get.arguments['title'];
     late String id = Get.arguments['id'];
-    final sortedList =
-        mealsData.where((e) => e.categories.contains(id)).toList();
+    controller.sortingList(id);
+    controller.filtering;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(getArguments['title'] as String),
+        title: Text(title),
         centerTitle: true,
       ),
       body: Container(
-          height: double.infinity,
-          child: ListView.builder(
-            itemCount: sortedList.length,
+        height: double.infinity,
+        child: Obx(
+          () => ListView.builder(
+            itemCount: controller.sortedList.length,
             itemBuilder: (context, index) {
-              return MealTile(meal: sortedList[index]) ;
-
-              // if (mealsData[index].categories.contains(id)) {
-              //   return MealsTile(meal: mealsData[index]);
-              // }
-              // return Container();
+              return MealTile(sortedMeal: controller.sortedList[index]);
             },
-          )),
+          ),
+        ),
+      ),
     );
   }
 }
