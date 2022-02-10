@@ -12,11 +12,12 @@ void main() async {
   // Get.put(GlobalController());
   // Get.put(FileController());
   await GetStorage.init();
+  Get.put(GlobalController());
 
   runApp(
     GetMaterialApp(
-      /* smartManagement: SmartManagement.onlyBuilder, */
-      initialBinding: ControllerBinding(),
+      // global controler
+      /* initialBinding: ControllerBinding(), */
       theme: ThemeData(
         backgroundColor: Color.fromRGBO(255, 254, 229, 1),
         canvasColor: Color.fromRGBO(255, 254, 229, 1),

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_meals_app/app/controllers/global_controller.dart';
+import 'package:getx_meals_app/app/data/meals_data.dart';
 
 import 'package:getx_meals_app/app/modules/meals/views/meal_model.dart';
+import 'package:getx_meals_app/app/routes/app_pages.dart';
 
+import '../../favorits/views/favorits_view.dart';
 import '../../meals/controllers/meals_controller.dart';
+import '../controllers/meal_recipes_controller.dart';
 
 Widget buildListTitle(context, String text) {
   return Padding(
@@ -26,14 +31,19 @@ Widget buildListContainer(Widget widget) {
       child: widget);
 }
 
-class MealRecipesView extends GetView<MealsController> {
+class MealRecipesView extends GetView<MealRecipesController> {
+  late final _globalControler = controller.globalControler;
   @override
   Widget build(BuildContext context) {
     var getArguments = Get.arguments as Meal;
-  
+    int index = 0;
 
     return Scaffold(
       appBar: AppBar(
+        // leading: IconButton(
+        //   icon: Icon(Icons.arrow_back_sharp),
+        //   // onPressed: () => Get.off(MealRecipesView()),
+        // ),
         title: Text(
           getArguments.title,
         ),
@@ -54,17 +64,46 @@ class MealRecipesView extends GetView<MealsController> {
                       fit: BoxFit.cover,
                     ),
                   ),
+                  // Positioned(
+                  //     top: 15,
+                  //     left: 320,
+                  //     child: FloatingActionButton(
+                  //       // heroTag: 'btn1',
+                  //       backgroundColor: Colors.purple,
+                  //       onPressed: () {
+                  //         controller.deleteSortedListItem(getArguments.id);
+                  //         Get.back();
+                  //       },
+                  //       child: Icon(Icons.delete),
+                  //     )),
                   Positioned(
-                      top: 15,
-                      left: 320,
-                      child: FloatingActionButton(
-                        backgroundColor: Colors.purple,
-                        onPressed: () {
-                          controller.deleteSortedListItem(getArguments.id);
-                          Get.back();
-                        },
-                        child: Icon(Icons.delete),
-                      )),
+                    top: 230,
+                    left: 320,
+                    child: FloatingActionButton(
+                      // heroTag: 'btn2',
+                      backgroundColor: Colors.purple,
+                      onPressed: () {
+                        Get.offAndToNamed(Routes.TABS);
+
+                         _globalControler.addToFavorites(getArguments.id);
+                        getArguments.toggleFavorite(getArguments);
+                        index = mealsData.indexWhere(
+                            (element) => element.id == getArguments.id);
+
+                        mealsData[index].toggleFavorite(getArguments);
+                        print(mealsData[index].isFavorite);
+                      },
+                      child: mealsData[index].isFavorite
+                          ? Icon(
+                              Icons.star_border,
+                              size: 50,
+                            )
+                          : Icon(
+                              Icons.radar,
+                              size: 50,
+                            ),
+                    ),
+                  ),
                 ],
               ),
               buildListTitle(context, 'Ingridients'),

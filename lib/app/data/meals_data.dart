@@ -7,7 +7,7 @@ import '../modules/meals/views/meal_model.dart';
 
 
 
-   const List<Meal> mealsData = [
+    List<Meal> mealsData = [
     Meal(
       id: 'm1',
       categories: [

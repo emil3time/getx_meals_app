@@ -12,7 +12,7 @@ class BottomController extends GetxController {
   void screenChanger(int index) {
     selectedScreenIndex.value = index;
     screens[selectedScreenIndex.value];
-    update();
+
   }
 
   final List<Widget> screens = [

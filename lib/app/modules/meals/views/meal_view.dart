@@ -26,14 +26,12 @@ class MealView extends GetView<MealsController> {
       ),
       body: Container(
         height: double.infinity,
-        child: Obx(
-          () => ListView.builder(
+        child: ListView.builder(
             itemCount: controller.sortedList.length,
             itemBuilder: (context, index) {
               return MealTile(sortedMeal: controller.sortedList[index]);
             },
           ),
-        ),
       ),
     );
   }

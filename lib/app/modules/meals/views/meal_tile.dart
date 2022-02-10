@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:getx_meals_app/app/routes/app_pages.dart';
 
 import '../controllers/meals_controller.dart';
 import 'meal_model.dart';
 
 class MealTile extends GetView<MealsController> {
-  Meal sortedMeal;
+  Meal? sortedMeal;
   MealTile({required this.sortedMeal});
 
   /* dinamicly converting enums from meal_data to string interpretation*/
 //
   get affordability {
-    switch (sortedMeal.affordability) {
+    switch (sortedMeal!.affordability) {
       case Affordability.Affordable:
         return 'Affotrable';
 
@@ -28,7 +29,7 @@ class MealTile extends GetView<MealsController> {
   }
 
   get complexity {
-    switch (sortedMeal.complexity) {
+    switch (sortedMeal!.complexity) {
       case Complexity.Challenging:
         return 'Challenging';
 
@@ -49,7 +50,7 @@ class MealTile extends GetView<MealsController> {
 
     return InkWell(
       onTap: () {
-        Get.toNamed('/meal-recipes',arguments: sortedMeal);
+        Get.toNamed(Routes.MEAL_RECIPES,arguments: sortedMeal);
       },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -66,7 +67,7 @@ class MealTile extends GetView<MealsController> {
                       topRight: Radius.circular(15),
                       topLeft: Radius.circular(15)),
                   child: Image.network(
-                    sortedMeal.imageUrl,
+                    sortedMeal!.imageUrl,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -79,7 +80,7 @@ class MealTile extends GetView<MealsController> {
                   height: 40,
                   color: Colors.black54,
                   child: FittedBox(
-                      child: Text(sortedMeal.title,
+                      child: Text(sortedMeal!.title,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 24,
@@ -97,7 +98,7 @@ class MealTile extends GetView<MealsController> {
                       children: [
                         Icon(Icons.access_time),
                         Text(
-                          '${sortedMeal.duration.toString()} min',
+                          '${sortedMeal!.duration.toString()} min',
                         ),
                       ],
                     ),

@@ -1,5 +1,3 @@
-
-
 enum Affordability {
   Affordable,
   Pricey,
@@ -11,7 +9,7 @@ enum Complexity {
   Hard,
 }
 
- class Meal {
+class Meal {
   final String id;
   final int duration;
   final String imageUrl;
@@ -19,6 +17,7 @@ enum Complexity {
   final List<String> categories;
   final List<String> ingredients;
   final List<String> steps;
+  bool isFavorite;
   final bool isGlutenFree;
   final bool isVegan;
   final bool isVegetarian;
@@ -26,8 +25,14 @@ enum Complexity {
   final Affordability affordability;
   final Complexity complexity;
 
-  const Meal(
-      {required this.affordability,
+  void toggleFavorite(Meal meal) {
+    /* isFavorite = !isFavorite; */
+    meal.isFavorite = !meal.isFavorite;
+  }
+
+  Meal(
+      {this.isFavorite = false,
+      required this.affordability,
       required this.categories,
       required this.complexity,
       required this.id,

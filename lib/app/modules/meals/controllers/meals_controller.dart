@@ -7,6 +7,7 @@ import '../../filters/controllers/filters_controller.dart';
 
 class MealsController extends GetxController {
   RxList<Meal> sortedList = <Meal>[].obs;
+
   var globalControler = Get.find<GlobalController>();
 
   void sortingList(String id) {
@@ -14,8 +15,8 @@ class MealsController extends GetxController {
         mealsData.where((e) => e.categories.contains(id)).toList();
   }
 
-
-   /* var filtersController = Get.put(FiltersController());
+  // alternative way
+  /* var filtersController = Get.put(FiltersController());
    late Map<String, bool> filters = filtersController.filters(); */
 
   void filtering() {
@@ -33,6 +34,7 @@ class MealsController extends GetxController {
     }
   }
 
+  // alternative logic
 /*   void filtering() {
     if (filters['isGlutenFree'] ?? false) {
       isGlutenFree();
@@ -68,18 +70,21 @@ class MealsController extends GetxController {
     sortedList.removeWhere((element) => element.id == id);
   }
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {}
-  void increment() => count.value++;
+    final count = 0.obs;
+    @override
+    void onInit() {
+      super.onInit();
+    }
+
+    @override
+    void onReady() {
+      super.onReady();
+    }
+
+    @override
+    void onClose() {}
+    void increment() => count.value++;
+
 }
