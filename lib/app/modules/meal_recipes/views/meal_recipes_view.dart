@@ -64,18 +64,6 @@ class MealRecipesView extends GetView<MealRecipesController> {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  // Positioned(
-                  //     top: 15,
-                  //     left: 320,
-                  //     child: FloatingActionButton(
-                  //       // heroTag: 'btn1',
-                  //       backgroundColor: Colors.purple,
-                  //       onPressed: () {
-                  //         controller.deleteSortedListItem(getArguments.id);
-                  //         Get.back();
-                  //       },
-                  //       child: Icon(Icons.delete),
-                  //     )),
                   Positioned(
                     top: 230,
                     left: 320,
@@ -83,25 +71,24 @@ class MealRecipesView extends GetView<MealRecipesController> {
                       // heroTag: 'btn2',
                       backgroundColor: Colors.purple,
                       onPressed: () {
-                        Get.offAndToNamed(Routes.TABS);
+                        _globalControler.addToFavorites(getArguments.id);
 
-                         _globalControler.addToFavorites(getArguments.id);
-                        getArguments.toggleFavorite(getArguments);
-                        index = mealsData.indexWhere(
-                            (element) => element.id == getArguments.id);
+                        getArguments.toggleFavorite();
+                        print('meal recipe : ${getArguments.isFavorite}');
 
-                        mealsData[index].toggleFavorite(getArguments);
-                        print(mealsData[index].isFavorite);
+                        Get.offAllNamed(Routes.TABS);
                       },
-                      child: mealsData[index].isFavorite
-                          ? Icon(
-                              Icons.star_border,
-                              size: 50,
-                            )
-                          : Icon(
-                              Icons.radar,
-                              size: 50,
-                            ),
+                      child: Obx(
+                        (() => getArguments.isFavorite.value
+                            ? Icon(
+                                Icons.star_border,
+                                size: 50,
+                              )
+                            : Icon(
+                                Icons.add,
+                                size: 50,
+                              )),
+                      ),
                     ),
                   ),
                 ],

@@ -9,16 +9,18 @@ class FavoritsController extends GetxController {
 
   var globalControler = Get.find<GlobalController>();
 
-  late Map<String, dynamic> _favorki = globalControler.box.read('favoriteList');
+  late Map<String, dynamic> _boxFavorite =
+      globalControler.box.read('favoriteList');
 
   List<Meal?> get favoritesList {
     var tmpList = mealsData.where((e) {
-      return _favorki.containsValue(e.id.toString());
+      return _boxFavorite.containsValue(e.id.toString());
     }).toList();
     update();
     return tmpList;
-
   }
+
+  
 
   /*  RxList<Meal> favoriteList = <Meal>[].obs;
   void addToFavorites(String id) {

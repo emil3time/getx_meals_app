@@ -46,8 +46,6 @@ class MealTile extends GetView<MealsController> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return InkWell(
       onTap: () {
         Get.toNamed(Routes.MEAL_RECIPES,arguments: sortedMeal);

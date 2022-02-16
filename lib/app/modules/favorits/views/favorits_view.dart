@@ -14,6 +14,8 @@ class FavoritsView extends GetView<FavoritsController> {
     var globalControler = Get.find<GlobalController>();
     var controller = Get.put(FavoritsController());
     List<Meal?> fav = controller.favoritesList;
+   
+
     /* List<Meal> fav1 = globalControler.favoriteList; */
 
     return Scaffold(
@@ -28,7 +30,7 @@ class FavoritsView extends GetView<FavoritsController> {
               itemCount: fav.length,
               itemBuilder: (context, index) {
                 /* print(fav); */
-                return MealTile(sortedMeal:  fav[index]!);
+                return MealTile(sortedMeal:  fav[index]! );
               },
             ),
           ),

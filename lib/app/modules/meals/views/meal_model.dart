@@ -1,3 +1,6 @@
+import 'package:get/get.dart';
+import 'package:getx_meals_app/app/controllers/global_controller.dart';
+
 enum Affordability {
   Affordable,
   Pricey,
@@ -9,7 +12,8 @@ enum Complexity {
   Hard,
 }
 
-class Meal {
+class Meal extends GetxController {
+  var globCont = Get.find<GlobalController>();
   final String id;
   final int duration;
   final String imageUrl;
@@ -17,7 +21,7 @@ class Meal {
   final List<String> categories;
   final List<String> ingredients;
   final List<String> steps;
-  bool isFavorite;
+  RxBool isFavorite = false.obs;
   final bool isGlutenFree;
   final bool isVegan;
   final bool isVegetarian;
@@ -25,14 +29,25 @@ class Meal {
   final Affordability affordability;
   final Complexity complexity;
 
-  void toggleFavorite(Meal meal) {
+  void toggleFavorite() {
     /* isFavorite = !isFavorite; */
-    meal.isFavorite = !meal.isFavorite;
+    isFavorite.value = !isFavorite.value;
+    // saveIsFavorite();
+
+    print('model meals :${isFavorite.value}');
   }
 
+  // saveIsFavorite() {
+  //   globCont.box.write('isFavorite', isFavorite.value);
+  // }
+
+  // readIsFavorite() {
+  //   globCont.box.read('isFavorite');
+  //   update();
+  // }
+
   Meal(
-      {this.isFavorite = false,
-      required this.affordability,
+      {required this.affordability,
       required this.categories,
       required this.complexity,
       required this.id,

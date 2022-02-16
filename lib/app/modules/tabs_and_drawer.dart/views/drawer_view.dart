@@ -50,8 +50,11 @@ class CustomDrawer extends StatelessWidget {
                     )
                   ],
                 )),
-            _buildListTile(
-                Icons.fastfood, 'category', () => Get.toNamed(Routes.CATEGORY)),
+            _buildListTile(Icons.fastfood, 'category', () {
+              /* Get.back(); */
+              /* print('drower here'); */
+              Get.offAllNamed(Routes.TABS);
+            }),
             Divider(
               color: Theme.of(context).colorScheme.background,
               thickness: 4,
